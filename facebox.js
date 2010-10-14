@@ -68,13 +68,13 @@
  */
 (function($) {
   $.facebox = function(data, klass) {
-    $.facebox.loading()
+    $.facebox.loading();
 
-    if (data.ajax) fillFaceboxFromAjax(data.ajax, klass)
-    else if (data.image) fillFaceboxFromImage(data.image, klass)
-    else if (data.div) fillFaceboxFromHref(data.div, klass)
-    else if ($.isFunction(data)) data.call($)
-    else $.facebox.reveal(data, klass)
+    if (data.ajax) fillFaceboxFromAjax(data.ajax, klass);
+    else if (data.image) fillFaceboxFromImage(data.image, klass);
+    else if (data.div) fillFaceboxFromHref(data.div, klass);
+    else if ($.isFunction(data)) data.call($);
+    else $.facebox.reveal(data, klass);
   }
 
   /*
@@ -135,7 +135,7 @@
       $(document).bind('keydown.facebox', function(e) {
         if (e.keyCode == 27) $.facebox.close();
         return true;
-      })
+      });
       $(document).trigger('loading.facebox');
     },
 
@@ -153,7 +153,7 @@
       $(document).trigger('close.facebox');
       return false;
     }
-  })
+  });
 
   /*
    * Public, $.fn methods
@@ -177,7 +177,7 @@
     }
 
     return this.bind('click.facebox', clickHandler);
-  }
+  };
 
   /*
    * Private methods
@@ -204,7 +204,7 @@
     $('#facebox').find('.b:first, .bl').each(function() {
       preload.push(new Image());
       preload.slice(-1).src = $(this).css('background-image').replace(/url\((.+)\)/, '$1');
-    })
+    });
 
     $('#facebox .close').click($.facebox.close);
     $('#facebox .close_image').attr('src', $.facebox.settings.closeImage);
@@ -236,7 +236,7 @@
     } else if (document.body) { // other Explorers
       windowHeight = document.body.clientHeight;
     }
-    return windowHeight
+    return windowHeight;
   }
 
   // Backwards compatibility
@@ -275,7 +275,7 @@
     var image = new Image();
     image.onload = function() {
       $.facebox.reveal('<div class="image"><img src="' + image.src + '" /></div>', klass);
-    }
+    };
     image.src = href;
   }
 
@@ -307,9 +307,9 @@
       $("#facebox_overlay").removeClass("facebox_overlayBG");
       $("#facebox_overlay").addClass("facebox_hide");
       $("#facebox_overlay").remove();
-    })
+    });
 
-    return false
+    return false;
   }
 
   /*
@@ -323,7 +323,7 @@
       hideOverlay();
       $('#facebox .loading').remove();
       $(document).trigger('afterClose.facebox');
-    })
-  })
+    });
+  });
 
 })(jQuery);
