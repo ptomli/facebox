@@ -77,7 +77,7 @@
     else if (data.div) fillFaceboxFromHref(data.div, klass);
     else if ($.isFunction(data)) data.call($);
     else $.facebox.reveal(data, klass);
-  }
+  };
 
   $.facebox.defaultSettings = {
       opacity      : 0,
