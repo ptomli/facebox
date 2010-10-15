@@ -82,8 +82,8 @@
   $.facebox.defaultSettings = {
       opacity      : 0,
       overlay      : true,
-      loadingImage : 'loading.gif',
-      closeImage   : 'closelabel.gif',
+      loadingImage : 'facebox-loading.gif',
+      closeImage   : 'facebox-close.gif',
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
@@ -93,7 +93,7 @@
           </div> \
           <div class="facebox-footer"> \
             <a href="#" class="facebox-close"> \
-              <img src="closelabel.gif" title="close" class="facebox-close-image" /> \
+              <img src="facebox-close.gif" title="close" class="facebox-close-image" /> \
             </a> \
           </div> \
         </div> \
