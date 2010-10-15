@@ -6,15 +6,15 @@
   text-align: left;
 }
 
-#facebox .popup {
+#facebox .facebox-popup {
   position: relative;
 }
 
-#facebox .content {
+#facebox .facebox-content {
     overflow: auto;
 }
 
-#facebox .body {
+#facebox .facebox-body {
   padding: 10px;
   background: #fff;
   width: 370px;
@@ -25,11 +25,11 @@
   -webkit-border-radius: 10px;
 }
 
-#facebox .loading {
+#facebox .facebox-loading {
   text-align: center;
 }
 
-#facebox .image {
+#facebox .facebox-image {
   text-align: center;
 }
 
@@ -38,18 +38,18 @@
   margin: 0;
 }
 
-#facebox .footer {
+#facebox .facebox-footer {
   border-top: 1px solid #DDDDDD;
   padding-top: 5px;
   margin-top: 10px;
   text-align: right;
 }
 
-#facebox .footer img {
+#facebox .facebox-footer img {
   vertical-align: middle;
 }
 
-#facebox_overlay {
+#facebox-overlay {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -57,16 +57,16 @@
   width:100%;
 }
 
-.facebox_hide {
+.facebox-hide {
   z-index:-100;
 }
 
-.facebox_overlayBG {
+.facebox-overlayBG {
   background-color: #000;
   z-index: 99;
 }
 
-.ie6 #facebox_overlay {
+.ie6 #facebox-overlay {
   position: absolute;
   height: expression("document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'");
 }

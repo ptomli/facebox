@@ -87,13 +87,13 @@
       imageTypes   : [ 'png', 'jpg', 'jpeg', 'gif' ],
       faceboxHtml  : '\
     <div id="facebox" style="display:none;"> \
-      <div class="popup"> \
-        <div class="body"> \
-          <div class="content"> \
+      <div class="facebox-popup"> \
+        <div class="facebox-body"> \
+          <div class="facebox-content"> \
           </div> \
-          <div class="footer"> \
-            <a href="#" class="close"> \
-              <img src="closelabel.gif" title="close" class="close_image" /> \
+          <div class="facebox-footer"> \
+            <a href="#" class="facebox-close"> \
+              <img src="closelabel.gif" title="close" class="facebox-close-image" /> \
             </a> \
           </div> \
         </div> \
@@ -108,12 +108,12 @@
     settings: $.facebox.defaultSettings,
     loading: function() {
       init();
-      if ($('#facebox .loading').length == 1) return true;
+      if ($('#facebox .facebox-loading').length == 1) return true;
       showOverlay();
 
-      $('#facebox .content').empty();
-      $('#facebox .body').children().hide().end().
-        append('<div class="loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>');
+      $('#facebox .facebox-content').empty();
+      $('#facebox .facebox-body').children().hide().end().
+        append('<div class="facebox-loading"><img src="'+$.facebox.settings.loadingImage+'"/></div>');
 
       $('#facebox').css({
         top:	getPageScroll()[1] + (getPageHeight() / 10),
@@ -129,11 +129,11 @@
 
     reveal: function(data, klass) {
       $(document).trigger('beforeReveal.facebox');
-      if (klass) $('#facebox .content').addClass(klass);
-      $('#facebox .content').append(data);
-      $('#facebox .loading').remove();
-      $('#facebox .body').children().fadeIn('normal');
-      $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .body').width() / 2));
+      if (klass) $('#facebox .facebox-content').addClass(klass);
+      $('#facebox .facebox-content').append(data);
+      $('#facebox .facebox-loading').remove();
+      $('#facebox .facebox-body').children().fadeIn('normal');
+      $('#facebox').css('left', $(window).width() / 2 - ($('#facebox .facebox-body').width() / 2));
       $(document).trigger('reveal.facebox').trigger('afterReveal.facebox');
     },
 
@@ -189,13 +189,8 @@
     preload[0].src = $.facebox.settings.closeImage;
     preload[1].src = $.facebox.settings.loadingImage;
 
-    $('#facebox').find('.b:first, .bl').each(function() {
-      preload.push(new Image());
-      preload.slice(-1).src = $(this).css('background-image').replace(/url\((.+)\)/, '$1');
-    });
-
-    $('#facebox .close').click($.facebox.close);
-    $('#facebox .close_image').attr('src', $.facebox.settings.closeImage);
+    $('#facebox .facebox-close').click($.facebox.close);
+    $('#facebox .facebox-close-image').attr('src', $.facebox.settings.closeImage);
   }
 
   // getPageScroll() by quirksmode.com
@@ -262,7 +257,7 @@
   function fillFaceboxFromImage(href, klass) {
     var image = new Image();
     image.onload = function() {
-      $.facebox.reveal('<div class="image"><img src="' + image.src + '" /></div>', klass);
+      $.facebox.reveal('<div class="facebox-image"><img src="' + image.src + '" /></div>', klass);
     };
     image.src = href;
   }
@@ -278,10 +273,10 @@
   function showOverlay() {
     if (skipOverlay()) return;
 
-    if ($('#facebox_overlay').length == 0)
-      $("body").append('<div id="facebox_overlay" class="facebox_hide"></div>');
+    if ($('#facebox-overlay').length == 0)
+      $("body").append('<div id="facebox-overlay" class="facebox-hide"></div>');
 
-    $('#facebox_overlay').hide().addClass("facebox_overlayBG")
+    $('#facebox-overlay').hide().addClass("facebox-overlayBG")
       .css('opacity', $.facebox.settings.opacity)
       .click(function() { $(document).trigger('close.facebox') })
       .fadeIn(200);
@@ -291,10 +286,10 @@
   function hideOverlay() {
     if (skipOverlay()) return;
 
-    $('#facebox_overlay').fadeOut(200, function(){
-      $("#facebox_overlay").removeClass("facebox_overlayBG");
-      $("#facebox_overlay").addClass("facebox_hide");
-      $("#facebox_overlay").remove();
+    $('#facebox-overlay').fadeOut(200, function(){
+      $("#facebox-overlay").removeClass("facebox-overlayBG");
+      $("#facebox-overlay").addClass("facebox-hide");
+      $("#facebox-overlay").remove();
     });
 
     return false;
@@ -307,9 +302,9 @@
   $(document).bind('close.facebox', function() {
     $(document).unbind('keydown.facebox');
     $('#facebox').fadeOut(function() {
-      $('#facebox .content').removeClass().addClass('content');
+      $('#facebox .facebox-content').removeClass().addClass('facebox-content');
       hideOverlay();
-      $('#facebox .loading').remove();
+      $('#facebox .facebox-loading').remove();
       $(document).trigger('afterClose.facebox');
     });
   });
