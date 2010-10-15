@@ -67,7 +67,9 @@
  *
  */
 (function($) {
-  $.facebox = function(data, klass) {
+  $.facebox = function(data, klass, settings) {
+    if (settings) $.extend($.facebox.settings, settings);
+
     $.facebox.loading();
 
     if (data.ajax) fillFaceboxFromAjax(data.ajax, klass);
@@ -77,12 +79,7 @@
     else $.facebox.reveal(data, klass);
   }
 
-  /*
-   * Public, $.facebox methods
-   */
-
-  $.extend($.facebox, {
-    settings: {
+  $.facebox.defaultSettings = {
       opacity      : 0,
       overlay      : true,
       loadingImage : 'loading.gif',
@@ -116,8 +113,13 @@
         </table> \
       </div> \
     </div>'
-    },
+    };
 
+    /*
+     * Public, $.facebox methods
+     */
+  $.extend($.facebox, {
+    settings: $.facebox.defaultSettings,
     loading: function() {
       init();
       if ($('#facebox .loading').length == 1) return true;
